@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,9 @@ Route::get('/delete_kamar/{id}', [AdminController::class, 'delete_kamar']);
 //HOME Controller---------------------------------------------------------------------
 Route::get('/kamar_detail/{id}', [HomeController::class, 'kamar_detail']);
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::post('/booking_kamar/{id}', [HomeController::class, 'booking_kamar']);
 });
+
+
+Route::get('/invoice/download/{id}', [InvoiceController::class, 'invoice'])->name('invoice.download');

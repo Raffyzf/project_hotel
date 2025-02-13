@@ -81,9 +81,19 @@
                             <label for="floatingInput">Check out</label>
                             <input type="date" class="form-control" name="endDate" id="endDate">
                         </div>
-                        <div style="width: 200px; padding: 20px;">
+                        <div style="width: 200px; padding:10px;">
                             <input type="submit" class="btn btn-primary" value="Booking Kamar">
                         </div>
+                        @if ($latestBooking = Auth::user()->bookings()->latest()->first())
+                        <div style="width:200px; padding:10px;">
+                            <a id="download-btn" href="{{ route('invoice.download', $latestBooking->id) }}" class="btn btn-success">Download Invoice</a>
+                        </div>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function(){
+                                console.log(document.getElementById("download-btn").href);
+                            })
+                        </script>
+                        @endif
                         @else
                         <p class="alert alert-danger">Silahkan login terlebih dahulu untuk melakukan booking kamar.</p>
                         <a class="btn btn-danger" href="{{ url('login') }}">Login</a>
